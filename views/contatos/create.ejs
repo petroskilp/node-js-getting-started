@@ -1,0 +1,52 @@
+<% include ../header %>
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-3">Adicionar contato</h1>
+        <div>
+            <%if (typeof errors !== 'undefined' && errors.length > 0) { %>
+            <div class="alert alert-danger">
+                <ul>
+                    <% for(var i=0; i<errors.length; i++) {%>
+                    <li><%= errors[i].msg %></li>
+                    <% } %>
+
+                </ul>
+            </div><br />
+            <% } %>
+            <form action="/contatos/create" method="post">
+
+                <div class="form-group">
+                    <label for="contato[nome]">Nome:</label>
+                    <input type="text" class="form-control" name="contato[nome]" value="<%- contato.nome %>" />
+                </div>
+
+                <div class="form-group">
+                    <label for="contato[email]">Sobrenome:</label>
+                    <input type="text" class="form-control" name="contato[sobrenome]"
+                        value="<%- contato.sobrenome %>" />
+                </div>
+
+                <div class="form-group">
+                    <label for="contato[email]">Email:</label>
+                    <input type="text" class="form-control" name="contato[email]" value="<%- contato.email %>" />
+                </div>
+                <div class="form-group">
+                    <label for="contato[cidade]">Cidade:</label>
+                    <input type="text" class="form-control" name="contato[cidade]" value="<%- contato.cidade %>" />
+                </div>
+                <div class="form-group">
+                    <label for="contato[pais]">País:</label>
+                    <input type="text" class="form-control" name="contato[pais]" value="<%- contato.pais %>" />
+                </div>
+                <div class="form-group">
+                    <label for="contato[profissao]">Profissão:</label>
+                    <input type="text" class="form-control" name="contato[profissao]"
+                        value="<%- contato.profissao %>" />
+                </div>
+                <button type="submit" class="btn btn-primary">Adicionar contato</button>
+                <a href="/contatos" class="btn btn-warning">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+<% include ../footer %>

@@ -1,0 +1,48 @@
+<% include ../header %>
+
+<div class="col-sm-12">
+  <%- locals.flash %>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="display-3">Contatos</h1>
+    <div>
+      <a style="margin: 19px;" href="/contatos/create" class="btn btn-primary">Novo contato</a>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Nome</td>
+          <td>Email</td>
+          <td>Profissão</td>
+          <td>Cidade</td>
+          <td>País</td>
+          <td colspan=2>Ações</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% contatos.forEach((contato, index) => { %>
+        <tr>
+          <td><%- index  %></td>
+          <td><%- contato.nome + " " + contato.sobrenome %></td>
+          <td><%- contato.email %></td>
+          <td><%- contato.profissao %></td>
+          <td><%- contato.cidade %></td>
+          <td><%- contato.pais %></td>
+          <td><a href="/contatos/<%- contato._id %>/editar" class="btn btn-primary">Editar</a></td>
+          <td>
+            <form action="/contatos/<%- contato._id %>?_method=DELETE" method="post">
+              <p>
+                <button class="btn btn-danger" type="submit">Excluir</button>
+
+              </p>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    </section>
+
+    <% include ../footer %>
