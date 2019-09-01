@@ -5,6 +5,7 @@ node_js:
 
 install:
 - cp .env.test .env
+- npm install
 
 deploy:
   provider: heroku
