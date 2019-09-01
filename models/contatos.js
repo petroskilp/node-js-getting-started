@@ -8,5 +8,5 @@ module.exports = function(express) {
         pais: {type: String, required: true}, 
         profissao: {type: String, required: true} 
     });
-    return global.db.model('contatos', contato);
+    return global.db.models.contatos||global.db.model('contatos', contato);
 };

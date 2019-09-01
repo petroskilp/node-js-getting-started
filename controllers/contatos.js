@@ -3,7 +3,7 @@ module.exports = function (app) {
     var Contato = app.models.contatos;
     var ContatoController = {
         index: function (req, res) {
-            Contato.find(function (erro, contatos) {
+            app.models.contatos.find(function (erro, contatos) {
                 var resultado = { contatos: contatos };
                 res.render('contatos/index', resultado);
             });
@@ -30,7 +30,11 @@ module.exports = function (app) {
         },
         edit: function (req, res) {
             var _id = req.params.id;
-            Contato.findById(_id, function (erro, contato) {
+            app.models.contatos.findById(_id, function (erro, contato) {
+                if (erro) {
+                    res.sendStatus(404)
+                    return;
+                }
                 var resultado = { contato: contato };
                 res.render('contatos/edit', resultado);
             });
@@ -44,7 +48,7 @@ module.exports = function (app) {
                 return;
             }
             var _id = req.params.id;
-            Contato.findById(_id, function (erro, contato) {
+            app.models.contatos.findById(_id, function (erro, contato) {
                 contato.nome = req.body.contato.nome;
                 contato.sobrenome = req.body.contato.sobrenome;
                 contato.email = req.body.contato.email;
@@ -58,7 +62,7 @@ module.exports = function (app) {
         },
         destroy: function (req, res) {
             var _id = req.params.id;
-            Contato.deleteOne({ _id: _id }, function (erro) {
+            app.models.contatos.deleteOne({ _id: _id }, function (erro) {
                 req.flash('success', 'Contato apagado!', '/contatos');
             });
         },

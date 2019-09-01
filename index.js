@@ -51,3 +51,5 @@ consign().include('models')
   .into(app)
 app.use(error.notFound)
   .use(error.serverError);
+
+module.exports = app;
