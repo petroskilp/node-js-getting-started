@@ -71,7 +71,6 @@ module.exports = function (app) {
             check('contato[nome]', 'Campo nome é obrigatório').not().isEmpty(),
             check('contato[sobrenome]', 'Campo sobrenome é obrigatório').not().isEmpty()
         ]
-        // fim do controller...
     }
     return ContatoController;
 };
